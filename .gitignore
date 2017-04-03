@@ -1,0 +1,14 @@
+/target
+/lib
+/classes
+/checkouts
+pom.xml
+figwheel_server.log
+*.jar
+*.class
+/.lein-*
+profiles.clj
+/.env
+.idea/
+.nrepl-port
+/log
