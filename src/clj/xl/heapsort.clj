@@ -62,11 +62,13 @@
     )
   )
 
-(doseq [ns [
-            [1.0 -1.0 1.0 -1.0 1.0]
-            ]]
-  (println "ns: " (seq ns))
-  (println "sorted: " (heap-sort ns))
+(comment
+  (doseq [ns [
+              [1.0 -1.0 1.0 -1.0 1.0]
+              ]]
+    (println "ns: " (seq ns))
+    (println "sorted: " (heap-sort ns))
+    )
   )
 
 (defn ordered? [xs]

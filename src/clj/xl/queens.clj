@@ -45,9 +45,13 @@
     )
   )
 
-(let [cols-list (queens 8)
-      row-cols-list (map (fn [cols] (map-indexed #(list %1 %2) cols)) cols-list)
-      ]
-  (show-results row-cols-list)
-  (println "number of solutions:" (count row-cols-list))
+
+(comment
+
+  (let [cols-list (queens 8)
+        row-cols-list (map (fn [cols] (map-indexed #(list %1 %2) cols)) cols-list)
+        ]
+    (show-results row-cols-list)
+    (println "number of solutions:" (count row-cols-list))
+    )
   )

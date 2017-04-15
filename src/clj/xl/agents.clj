@@ -27,4 +27,6 @@
     )
   )
 
-(time (run 1000 1000))
+(comment
+  (time (run 1000 1000))
+  )

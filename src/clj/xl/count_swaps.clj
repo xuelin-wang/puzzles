@@ -12,4 +12,6 @@
     )
   )
 
-(count-swaps 1000000)
+(comment
+  (count-swaps 1000000)
+  )

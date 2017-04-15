@@ -33,11 +33,14 @@
     )
   )
 
-(let [f (fn [k]
-          (if (< (inc k) 100) (inc k) (+ 100 (mod (inc k) 50)))
-          )
-      x0 0
-      max-step 1000
-      mu (floyd f x0 max-step)]
+(comment
+
+  (let [f (fn [k]
+            (if (< (inc k) 100) (inc k) (+ 100 (mod (inc k) 50)))
+            )
+        x0 0
+        max-step 1000
+        mu (floyd f x0 max-step)]
     (println "mu: " mu)
+    )
   )

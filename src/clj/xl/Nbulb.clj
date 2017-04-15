@@ -24,18 +24,21 @@
     )
   )
 
-(let [states [[] [true] [false]
-             [true true] [true false] [false false] [false true]
-             [true false true false false true true false true false false]
-             ]
-      switches (map  (fn [state] [state (reverse (switch-on state))])  states)
-      ]
-  (dorun
-    (map
-      (fn [[state switches]]
-        (println "state: " state)
-        (println "switches: " switches)
-        )
-      switches)
+(comment
+
+  (let [states [[] [true] [false]
+                [true true] [true false] [false false] [false true]
+                [true false true false false true true false true false false]
+                ]
+        switches (map  (fn [state] [state (reverse (switch-on state))])  states)
+        ]
+    (dorun
+      (map
+        (fn [[state switches]]
+          (println "state: " state)
+          (println "switches: " switches)
+          )
+        switches)
+      )
     )
   )

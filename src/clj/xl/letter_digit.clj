@@ -41,9 +41,12 @@
     )
   )
 
-(let [ss "102345"
-      digits (vec ss)
-      cnt (count-maps digits (dec (count digits)) {})
-      ]
-  (println "count of " ss " is " cnt)
+(comment
+
+  (let [ss "102345"
+        digits (vec ss)
+        cnt (count-maps digits (dec (count digits)) {})
+        ]
+    (println "count of " ss " is " cnt)
+    )
   )
