@@ -128,17 +128,26 @@
                      ]
                  (= flat-order (range (count nums)))
                  )
-
               ))
 
 (comment
-  #(let [ret (:ret %)
-         result (:result ret)
-         nums (-> % :args :nums)
-         permu (combo/permutations (range (dec (count nums))))
-         permu-result (calc-permu permu nums)
-         ]
-     (every? (fn [porder] (>= result (calc-permu porder nums))) permu)
+  #(let [permus (combo/permutations (range (dec (count nums))))]
+     (reduce
+       (fn [last-result nnn]
+         (and last-result
+              (let [ret (:ret %)
+                    result (:result ret)
+                    nums (-> % :args :nums)
+                    permu (rand-nth permus)
+                    permu-result (calc-permu permu nums)
+                    ]
+                (every? (fn [porder] (>= result (calc-permu porder nums))) permu)
+                )
+              )
+         )
+       true
+       (range 20)
+       )
      )
   )
 

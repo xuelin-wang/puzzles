@@ -33,7 +33,7 @@
     <orderEntry type="library" name="Leiningen: doo:0.1.7" level="project" />
     <orderEntry type="library" name="Leiningen: junit:4.10" level="project" />
     <orderEntry type="library" name="Leiningen: karma-reporter:0.1.0" level="project" />
-    <orderEntry type="library" name="Leiningen: org.clojure/clojure:1.9.0-alpha14" level="project" />
+    <orderEntry type="library" name="Leiningen: org.clojure/clojure:1.9.0-alpha15" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/clojurescript:0.0-3165" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/core.async:0.3.441" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/core.cache:0.6.5" level="project" />
