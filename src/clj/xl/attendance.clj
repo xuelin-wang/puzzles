@@ -73,7 +73,7 @@ Note: The value of n won't exceed 100,000.
     )
   )
 
-(samples)
+;(samples)
 
 ;; (stest/check `di/max-div) hangs, why?
 (s/fdef rewardable
