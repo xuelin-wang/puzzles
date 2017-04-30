@@ -7,5 +7,11 @@
             [clojure.set])
   (:import [xl.learn AlgoX]))
 
-(defn cover [rows cols]
-  (AlgoX/cover nil))
+(queens [size use-heuristic find-first]
+
+        )
+
+(soduku [problem-arr use-heuristic find-first]
+        )
+
+; List<List<Integer>> solveGrid(Collection<Collection<Integer>> grid, boolean useHeuristic, boolean findFirst)
