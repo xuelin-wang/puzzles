@@ -51,15 +51,21 @@ public class AlgoX {
 
     public static class ColumnNode extends Node {
         public int size = 0;
+        public boolean primary = true;
         public final String name;
 
         public String toString() {
             return "column: " + name;
         }
         public ColumnNode(String name) {
+            this(name, true);
+        }
+
+        public ColumnNode(String name, boolean primary) {
             super(-1);
             this.name = name;
             this.columnNode = this;
+            this.primary = primary;
         }
 
         public void cover() {
@@ -92,7 +98,7 @@ public class AlgoX {
         }
     }
 
-    public static ColumnNode fromMatrix(int[][] grid)
+    public static ColumnNode fromMatrix(int[][] grid, List<Integer> primaryCols)
     {
         ColumnNode header = new ColumnNode("header");
 
@@ -101,7 +107,10 @@ public class AlgoX {
 
         ArrayList<ColumnNode> colNodes = new ArrayList<>();
         for (int j = 0; j < columnCount; j++) {
-            ColumnNode colNode = new ColumnNode("" + j);
+            boolean isPrimary = true;
+            if (primaryCols != null && !primaryCols.contains(j))
+                isPrimary= false;
+            ColumnNode colNode = new ColumnNode("" + j, isPrimary);
             colNodes.add(colNode);
         }
 
@@ -163,7 +172,14 @@ public class AlgoX {
 
     public void search()
     {
-        if (header.right == header) {
+        boolean hasPrimaryCols = false;
+        for (ColumnNode node = (ColumnNode)header.right; node != header; node = (ColumnNode)node.right) {
+            if (node.primary) {
+                hasPrimaryCols = true;
+                break;
+            }
+        }
+        if (!hasPrimaryCols) {
             answers.add((ArrayList)currAnswer.clone());
             return;
         }
@@ -172,7 +188,7 @@ public class AlgoX {
         if (useHeuristic) {
             int curr = Integer.MAX_VALUE;
             ColumnNode col = (ColumnNode)header.right;
-            while (col != header) {
+            while (col != header && col.primary) {
                 if (col.size < curr) {
                     curr = col.size;
                     selectedCol = col;
@@ -207,7 +223,7 @@ public class AlgoX {
         lastCovered.uncover();
     }
 
-    public static List<List<Integer>> solveGrid(Collection<Collection<Integer>> grid, boolean useHeuristic, boolean findFirst)
+    public static List<List<Integer>> solveGrid(Collection<Collection<Integer>> grid, List<Integer> primaryCols, boolean useHeuristic, boolean findFirst)
     {
         int rowCount = grid.size();
         int[][] gridArr = new int[rowCount][];
@@ -225,7 +241,7 @@ public class AlgoX {
             rowIndex++;
         }
 
-        ColumnNode header = fromMatrix(gridArr);
+        ColumnNode header = fromMatrix(gridArr, primaryCols);
         AlgoX algoX = new AlgoX(header, useHeuristic, findFirst);
         algoX.search();
         List<ArrayList<Node>> answers = algoX.answers;
@@ -263,7 +279,7 @@ public class AlgoX {
                 {0, 0, 1},
                 {1, 0, 0}
         };
-        ColumnNode header = fromMatrix(grid);
+        ColumnNode header = fromMatrix(grid, null);
         AlgoX algoX = new AlgoX(header, useHeuristic, findFirstSolution);
         algoX.search();
 
