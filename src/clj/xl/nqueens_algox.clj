@@ -72,7 +72,7 @@
 
 (defn queens [n use-heuristic find-first]
   (let [[matrix primary-cols] (queens-matrix n)
-        rows-solutions (AlgoX/solveGrid matrix primary-cols use-heuristic find-first)
+        rows-solutions (AlgoX/solveGrid matrix nil primary-cols use-heuristic find-first)
         ]
     (map
       (fn [rows]

@@ -2,7 +2,9 @@ package xl.learn;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by xuelin on 4/12/17.
@@ -98,7 +100,7 @@ public class AlgoX {
         }
     }
 
-    public static ColumnNode fromMatrix(int[][] grid, List<Integer> primaryCols)
+    public static ColumnNode fromMatrix(int[][] grid, Collection<Integer> removedRows, Collection<Integer> primaryCols)
     {
         ColumnNode header = new ColumnNode("header");
 
@@ -114,6 +116,7 @@ public class AlgoX {
             colNodes.add(colNode);
         }
 
+        Map<Integer, Node> rowToRowNode = new HashMap<>();
         List<Node> rowNodes = new ArrayList<>();
         for (int i = 0; i < rowCount; i++) {
             rowNodes.clear();
@@ -133,6 +136,7 @@ public class AlgoX {
                 }
             }
             if (rowNodes.size() > 0) {
+                rowToRowNode.put(i, rowNodes.get(0));
                 for (int k = 0; k < rowNodes.size(); k++) {
                     int last = (rowNodes.size() - 1);
                     rowNodes.get(k).left = rowNodes.get(k > 0 ? k - 1 : last);
@@ -152,6 +156,18 @@ public class AlgoX {
             ColumnNode tmpNode = colNodes.get(i);
             tmpNode.left = i == 0 ? colNodes.get(colNodes.size() - 1) : colNodes.get(i - 1);
             tmpNode.right = i == colNodes.size() - 1 ? colNodes.get(0) : colNodes.get(i + 1);
+        }
+
+        if (removedRows != null && removedRows.size() > 0) {
+            for (int removedRow: removedRows) {
+                Node rowNode = rowToRowNode.get(removedRow);
+                if (rowNode != null) {
+                    for (Node node = rowNode.left; node != rowNode; node = node.left) {
+                        node.columnNode.cover();
+                    }
+                    rowNode.columnNode.cover();
+                }
+            }
         }
 
         return header;
@@ -223,7 +239,8 @@ public class AlgoX {
         lastCovered.uncover();
     }
 
-    public static List<List<Integer>> solveGrid(Collection<Collection<Integer>> grid, List<Integer> primaryCols, boolean useHeuristic, boolean findFirst)
+    public static List<List<Integer>> solveGrid(Collection<Collection<Integer>> grid, Collection<Integer> primaryCols,
+                                                List<Integer> removedRows, boolean useHeuristic, boolean findFirst)
     {
         int rowCount = grid.size();
         int[][] gridArr = new int[rowCount][];
@@ -241,7 +258,7 @@ public class AlgoX {
             rowIndex++;
         }
 
-        ColumnNode header = fromMatrix(gridArr, primaryCols);
+        ColumnNode header = fromMatrix(gridArr, removedRows, primaryCols);
         AlgoX algoX = new AlgoX(header, useHeuristic, findFirst);
         algoX.search();
         List<ArrayList<Node>> answers = algoX.answers;
@@ -279,7 +296,7 @@ public class AlgoX {
                 {0, 0, 1},
                 {1, 0, 0}
         };
-        ColumnNode header = fromMatrix(grid, null);
+        ColumnNode header = fromMatrix(grid, null, null);
         AlgoX algoX = new AlgoX(header, useHeuristic, findFirstSolution);
         algoX.search();
 
