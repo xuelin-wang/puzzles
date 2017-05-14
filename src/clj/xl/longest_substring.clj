@@ -36,7 +36,7 @@ Takes n max(length) time using suffix tree"
     )
   )
 
-(defn- dynamic-samnples []
+(defn- dynamic-samples []
   (doseq [[s1 s2]
             [
              ["" ""]
@@ -50,4 +50,4 @@ Takes n max(length) time using suffix tree"
     )
   )
 
-(dynamic-samnples)
+;(dynamic-samples)
