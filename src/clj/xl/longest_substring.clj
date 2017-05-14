@@ -10,7 +10,7 @@ Takes n max(length) time using suffix tree"
   (let [[l1 l2] (map count [s1 s2])
         [l1-1 l2-1] (map inc [l1 l2])
         answer-table (make-array Object l1-1 l2-1)
-        empty-answer {:len 0 :ss ""}]
+        empty-answer {:len 0 :ss-end 0}]
     ; init answer-table[0][x], answer-table[x][0] to 0
     (doseq [ii (range l1-1)]
       (aset answer-table ii 0 empty-answer)
@@ -21,18 +21,20 @@ Takes n max(length) time using suffix tree"
 
     (doall
       (for [ii (range 1 l1-1) jj (range 1 l2-1)]
-        (let [{:keys [len ss]} (aget answer-table (dec ii) (dec jj))
+        (let [{:keys [len ss-end]} (aget answer-table (dec ii) (dec jj))
               s1-ii (get s1 (dec ii))]
           (aset answer-table ii jj
                 (if (= s1-ii (get s2 (dec jj)))
-                  {:len (inc len) :ss (str ss s1-ii)}
+                  {:len (inc len) :ss-end ii}
                   empty-answer
                   )
                   )
           )
         )
       )
-    (apply (partial max-key :len) (flatten (mapv vec answer-table)))
+    (let [{:keys [len ss-end]} (apply (partial max-key :len) (flatten (mapv vec answer-table)))]
+      (if (zero? len) "" (subs s1 (- ss-end len) ss-end))
+      )
     )
   )
 
