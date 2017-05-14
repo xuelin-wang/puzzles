@@ -12,14 +12,34 @@ public class MatrixDeterminant {
         public int[] perm;
         public int sign;
         public int n;
+        public int[] c;
+        public int i;
+
         public PermState(int[] perm, int sign, int n) {
             this.perm = perm;
             this.sign = sign;
             this.n = n;
+            c = new int[n];
+            for (int ii = 0; ii < n; ii++) {
+                c[ii] = 0;
+            }
+            i = 0;
         }
     }
 
+    private static void swap(int[] arr, int fromIndex, int toIndex) {
+        int tmp = arr[fromIndex];
+        arr[fromIndex] = arr[toIndex];
+        arr[toIndex] = tmp;
+    }
+
+    /**
+     * heap's algorithm, each permutation sequence is generated in const time
+     * @param state
+     * @return
+     */
     public static PermState moveNext(PermState state) {
+
         int n = state.n;
         if (state.perm == null) {
             int[] perm = new int[n];
@@ -30,6 +50,29 @@ public class MatrixDeterminant {
             return state;
         }
 
+        if (state.i >= n)
+            return null;
+
+        int[] c = state.c;
+        int i = state.i;
+        int[] perm = state.perm;
+        if (c[i]  < i) {
+            if (i % 2 == 0) {
+                swap(perm, 0, i);
+            }
+            else {
+                swap(perm, c[i], i);
+            }
+            c[i]++;
+            state.i = 0;
+            state.sign = -state.sign;
+            return state;
+        }
+        else {
+            c[i] = 0;
+            state.i++;
+            return moveNext(state);
+        }
 
 
     }
@@ -68,9 +111,7 @@ public class MatrixDeterminant {
             return null;
         }
 
-        int tmp = perm[swapIndex1];
-        perm[swapIndex1] = perm[swapIndex2];
-        perm[swapIndex2] = tmp;
+        swap(perm, swapIndex1, swapIndex2);
         state.sign = -state.sign;
 
         for (int ii = swapIndex2  + 1; ii < n - 1; ii++) {
@@ -83,9 +124,7 @@ public class MatrixDeterminant {
                 }
             }
             if (minIndex != ii) {
-                tmp = perm[ii];
-                perm[ii] = perm[minIndex];
-                perm[minIndex] = tmp;
+                swap(perm, ii, minIndex);
                 state.sign = -state.sign;
             }
         }
