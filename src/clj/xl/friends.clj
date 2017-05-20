@@ -126,21 +126,22 @@
 
 
 ; spec def for automatic test check
-(s/def ::people-count (s/with-gen nat-int? #(s/gen (s/int-in 7 10))))
+(s/def ::people-count (s/int-in 8 10))
 
-(s/def ::g0-7s (s/tuple (s/int-in 0 7) (s/int-in 0 7)))
+;(s/def ::g0-7-pair (s/tuple (s/int-in 0 7) (s/int-in 0 7)) )
 
-(s/def ::rels (s/with-gen (s/coll-of (s/tuple nat-int? nat-int?))
-                          #(s/gen (s/coll-of ::g0-7s))))
+(s/def ::g0-7pairs (s/coll-of (s/tuple (s/int-in 0 7) (s/int-in 0 7))) )
+
+;(s/def ::rels (s/with-gen (s/coll-of (s/tuple nat-int? nat-int?)) #(s/gen (s/coll-of ::g0-7s))))
 
 (s/fdef count-circles
-        :args (s/cat :n ::people-count :rels ::rels)
+        :args (s/cat :n ::people-count :rels ::g0-7pairs)
         :ret nat-int?
         :fn (s/and #(= (:ret %) (naive-count (-> % :args :n) (-> % :args :rels)))
                    ))
 
 (s/fdef count-circles2
-        :args (s/cat :n ::people-count :rels ::rels)
+        :args (s/cat :n ::people-count :rels ::g0-7pairs)
         :ret nat-int?
         :fn (s/and #(= (:ret %) (naive-count (-> % :args :n) (-> % :args :rels)))
                    ))
