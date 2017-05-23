@@ -3,8 +3,8 @@
         [clojure.test.check :as tc]
            [clojure.test.check.generators :as tcg]
            [clojure.test.check.properties :as tcp]
-           [clojure.spec :as s]
-           [clojure.spec.gen :as sg]
+           [clojure.spec.alpha :as s]
+           [clojure.spec.gen.alpha :as sg]
            )
   )
 

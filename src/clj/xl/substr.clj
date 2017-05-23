@@ -1,7 +1,7 @@
 (ns xl.substr
   (:require [clojure.string]
-            [clojure.spec :as s]
-            [clojure.spec.gen :as g]
+            [clojure.spec.alpha :as s]
+            [clojure.spec.gen.alpha :as g]
             [clojure.test.check :as tc]
             [clojure.test.check.generators :as tcg]
             )

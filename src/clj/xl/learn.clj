@@ -1,7 +1,7 @@
 (ns xl.learn
   (:require [clojure.string]
             [clojure.pprint :refer [pprint]]
-            [clojure.spec :as s]
+            [clojure.spec.alpha :as s]
             [clojure.core.async :as a :refer [>! <! >!! <!! go go-loop chan buffer close! thread
                                               alts! alts!! timeout]]
             )

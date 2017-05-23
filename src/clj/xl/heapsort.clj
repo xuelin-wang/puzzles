@@ -1,5 +1,5 @@
 (ns xl.heapsort
-  (:require [clojure.spec :as s])
+  (:require [clojure.spec.alpha :as s])
   )
 
 (defn- swap-val [^doubles ns a b]
