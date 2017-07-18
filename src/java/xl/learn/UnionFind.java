@@ -3,6 +3,7 @@ package xl.learn;
 import com.sun.javafx.scene.control.skin.VirtualFlow;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -57,7 +58,7 @@ public class UnionFind {
         }
     }
 
-    public static int[] initForest(int[][] relations, int n)
+    public static int[] initForest(Collection<int[]> relations, int n)
     {
         int[] forest = new int[n];
         for (int i = 0; i < n; i++)
