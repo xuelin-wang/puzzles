@@ -34,8 +34,8 @@ Note: The value of n won't exceed 100,000.
         ll-rewardable l-rewardable-1
         p-rewardable-no-a (+ p-rewardable-1-no-a l-rewardable-1-no-a ll-rewardable-1-no-a)
         l-rewardable-no-a p-rewardable-1-no-a
-        ll-rewardable-no-a l-rewardable-1-no-a
-        ]
+        ll-rewardable-no-a l-rewardable-1-no-a]
+
     {
      :p-rewardable p-rewardable
      :a-rewardable a-rewardable
@@ -43,16 +43,16 @@ Note: The value of n won't exceed 100,000.
      :ll-rewardable ll-rewardable
      :p-rewardable-no-a p-rewardable-no-a
      :l-rewardable-no-a l-rewardable-no-a
-     :ll-rewardable-no-a ll-rewardable-no-a
-     }
-    )
-)
+     :ll-rewardable-no-a ll-rewardable-no-a}))
+
+
+
 
 (defn rewardable [n]
   (reduce
     (fn [result k]
-      (find-rewardable k result)
-      )
+      (find-rewardable k result))
+
     {
      :p-rewardable 1
      :a-rewardable 1
@@ -60,18 +60,18 @@ Note: The value of n won't exceed 100,000.
      :ll-rewardable 0
      :p-rewardable-no-a 1
      :l-rewardable-no-a 1
-     :ll-rewardable-no-a 0
-     }
-    (range 2 n)
-    )
-  )
+     :ll-rewardable-no-a 0}
+
+    (range 2 n)))
+
+
 
 (defn samples []
   (let [result (rewardable 3)]
     (println "result for 3:")
-    (println result)
-    )
-  )
+    (println result)))
+
+
 
 ;(samples)
 
@@ -84,13 +84,10 @@ Note: The value of n won't exceed 100,000.
                          :ll-rewardable
                          :p-rewardable-no-a
                          :l-rewardable-no-a
-                         :ll-rewardable-no-a
-                         } nat-int?)
+                         :ll-rewardable-no-a}
+                        nat-int?)
         :fn (s/and
               #(let [ret (:ret %)
-                     n (-> % :args :n)
-                     ]
-                 (= n (apply + (vals ret)))
-                 )
-              ))
+                     n (-> % :args :n)]
 
+                 (= n (apply + (vals ret))))))
