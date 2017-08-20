@@ -3,11 +3,12 @@
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[org.clojure/clojure "1.9.0-alpha16"]
-                 [org.clojure/core.specs.alpha "0.1.10"]
+  :dependencies [[org.clojure/clojure "1.9.0-alpha17"]
+                 [org.clojure/spec.alpha "0.1.123"]
                  [org.clojure/test.check "0.9.0"]
                  [org.clojure/math.combinatorics "0.1.4"]
-                 [org.clojure/core.async "0.3.442"]]
+                 [org.clojure/core.async "0.3.443"]
+                 [org.clojure/algo.monads "0.1.6"]]
 
   :java-source-paths ["src/java"]
   :javac-options ["-target" "1.8" "-source" "1.8"]
