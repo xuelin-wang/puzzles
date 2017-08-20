@@ -26,8 +26,6 @@ join: M(M(a)) -> M(a)
 
 Think type a is an object in category C. A functor F maps type a to type F(a). A function f: a->b is a morphism in C. F maps f to F(f): F(a)->F(b).
 
-A monad M is a functor C->C with two
-
 Consider a type as an object in category C, computation a morphism in category C. A monad is an eudofunctor M on C. join function is the natural from T2->T and unit is the natural 1C->T.
 
 - **Monad examples**
