@@ -1,14 +1,10 @@
 # testlein
 
-A Clojure library designed to ... well, that part is up to you.
-
-## Usage
-
-FIXME
+Playground for small clojure/java programs.
+Some of the programs:
+* Sudoku solution using Dancing links
 
 ## License
-
-Copyright © 2017 FIXME
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
