@@ -20,7 +20,7 @@ Hint: Length of the given string will not exceed 100.
 Analysis:
 only need consider string with no consecutive same chars.
 assume print always only print smallest length if possible.
-x=ab..ax..
+r=ab..ax..
 assume ith step if a:0..m (m can be 0)
 no prints after ith cross m, so later ops either 1..m-1 or m+1..
 move all ops >= m+1 to the end.
@@ -39,11 +39,11 @@ abc{a,b,d} = {3,3,4}
 aba{b,c} = {3,3}
 
 f(xy) =
-  y is new char: f(x) + 1
-  y is not new: can be done through a prev y (when?):m..n by extending m..k: f(x)
-                can not: f(x) + 1
+  c is new char: f(r) + 1
+  c is not new: can be done through a prev c (when?):m..n by extending m..k: f(r)
+                can not: f(r) + 1
 
-  consider last print of y:m..n,
+  consider last print of c:m..n,
   where there is a z
 
 

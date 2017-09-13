@@ -53,7 +53,7 @@
   1 0 0.5: 0 is not leaf
   1 0 2: 0 is leaf
 
-  -1 - -x: 0 is not leaf
+  -1 - -r: 0 is not leaf
   -1 0 1: if exists 0 < p < 1, 0 is leaf, else, no"
 
   [nums]

@@ -17,7 +17,7 @@
         answer-table (make-array Object half-k1 n1)
         false-answer {:check false}
         ]
-    ; init answer-table[0, x] to be true, answer-table[x, 0] to be false except answer-table[0, 0]
+    ; init answer-table[0, r] to be true, answer-table[r, 0] to be false except answer-table[0, 0]
     (doseq [ii (range n1)]
       (aset answer-table 0 ii {:check true :elems []}))
     (doseq [ii (range 1 half-k1)]

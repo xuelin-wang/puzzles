@@ -71,7 +71,7 @@
            [[1 2] [3]]
            [[1 3 5 8 11 13 15 17 19] [16 17 18 19]]
            ]]
-    (println "x:" x "\ny:" y "\nmedian:" (median x y) "\n")
+    (println "r:" x "\ny:" y "\nmedian:" (median x y) "\n")
     )
 
   )

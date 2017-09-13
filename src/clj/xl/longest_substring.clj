@@ -11,7 +11,7 @@ Takes n max(length) time using suffix tree"
         [l1-1 l2-1] (map inc [l1 l2])
         answer-table (make-array Object l1-1 l2-1)
         empty-answer {:len 0 :ss-end 0}]
-    ; init answer-table[0][x], answer-table[x][0] to 0
+    ; init answer-table[0][r], answer-table[r][0] to 0
     (doseq [ii (range l1-1)]
       (aset answer-table ii 0 empty-answer)
       )

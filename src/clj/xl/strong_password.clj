@@ -60,7 +60,7 @@ If s is already strong, return 0.\n\nInsertion, deletion or replace of any one c
     (cond
       (pos? add)
       ;add into the best run(s),
-      ; if a run is length x, will need x/3 updates to break it up.
+      ; if a run is length r, will need r/3 updates to break it up.
       ; add 1 to 3k+2 doesn't reduce updates in run. should add to 3k+1, if no such runs, then 3k.
       ; if to-add is positive, do same thing for to-add.
       ; after that, if:
