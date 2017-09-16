@@ -20,7 +20,7 @@ public class DP {
      * minimize cost.
      * Note c(M[p, q], N[q, r]) = pqr
      * c(M[0..n-1]) = min i : c(M[0..i]) + c(M[i+1..n-1]) + pqr
-     * calculate c botumn up, like a triangle
+     * calculate c bottom up, like a triangle
      * @param d
      * @return
      */
