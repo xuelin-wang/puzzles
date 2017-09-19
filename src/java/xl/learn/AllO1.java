@@ -55,7 +55,7 @@ public class AllO1<T> {
         Cell<T> up;
         Cell<T> down;
 
-        public Header(T key, int val, Cell left, Cell right, Cell up, Cell down) {
+        public Cell(T key, int val, Cell left, Cell right, Cell up, Cell down) {
             this.key = key;
             this.val = val;
             this.left = left;
