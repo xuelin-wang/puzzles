@@ -3,7 +3,9 @@ package xl.learn.google;
 import com.google.common.base.Joiner;
 import com.google.common.primitives.Doubles;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -121,13 +123,56 @@ public class Game24 {
         return false;
     }
 
+    public static boolean solve2(List<Double> ds) {
+        if (ds.size() == 0)
+            return false;
+        if (ds.size() == 1) {
+            return Math.abs(ds.get(0).doubleValue() - 24) < 0.000001;
+        }
+        for (int i = 0; i < ds.size(); i++) {
+            for (int j = 0; j < ds.size(); j++) {
+                if (i == j)
+                    continue;
+
+                double a = ds.get(i);
+                double b = ds.get(j);
+                for (int op = 0; op < 4; op++) {
+                    double res;
+                    switch (op) {
+                        case 0:
+                            res = a + b;
+                            break;
+                        case 1:
+                            res = a - b;
+                            break;
+                        case 2:
+                            res = a * b;
+                            break;
+                        default:
+                            res = a / b;
+                    }
+                    ArrayList<Double> ds2 = new ArrayList<>();
+                    for (int k = 0; k < ds.size(); k++) {
+                        if (k == i || k == j)
+                            continue;
+                        ds2.add(ds.get(k));
+                    }
+                    ds2.add(res);
+                    if (solve2(ds2))
+                        return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         for (double[] nums: new double[][]{
                 new double[]{4, 1, 8, 7},
                 new double[]{1, 2, 1, 2}
         }) {
             System.out.println(Doubles.asList(nums).stream().map(x -> String.valueOf(x)).collect(Collectors.joining(", ")));
-            System.out.println("Can get 24: " + solve(nums));
+            System.out.println("Can get 24: " + solve2(Doubles.asList(nums)));
         }
     }
 }
