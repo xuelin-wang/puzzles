@@ -13,7 +13,6 @@ public class DFS {
     public static class Node {
         int val;
         List<Node> children;
-        Node right;
         public Node(int val, List<Node> children) {
             this.val = val;
             this.children = children;
