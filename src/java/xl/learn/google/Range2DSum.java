@@ -29,6 +29,11 @@ import java.util.stream.Collectors;
  You may assume the number of calls to update and sumRegion function is distributed evenly.
  You may assume that row1 ≤ row2 and col1 ≤ col2.
 
+ Note: this impl is overcomplex!!!!
+ just need sums[i][j], no need for four dimensions!
+ sum[i0, j0, i1, j1]
+
+
  Solution:
  can we use similar trick as in range 1D?
  1. Sparse table
