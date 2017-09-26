@@ -1,9 +1,8 @@
 package xl.learn.google;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.google.common.base.Joiner;
+
+import java.util.*;
 
 /**
  * Created by xuelin on 9/25/17.
@@ -85,64 +84,165 @@ import java.util.Map;
  */
 public class WordSquares {
     public static class TrieNode {
-        TrieNode[] children = new TrieNode[26];
-        public TrieNode() {
+        String prefix;
+        TrieNode[] children;
+        public TrieNode(String prefix) {
+            this.prefix = prefix;
+            this.children = new TrieNode[26];
         }
-        public TrieNode addWord(String word) {
-            TrieNode currNode = this;
-            for (int index = 0; index < word.length(); index++) {
-                char ch = word.charAt(index);
-                TrieNode node = currNode.children[ch - 'a'];
-                if (node == null) {
-                    node = new TrieNode();
-                    currNode.children[ch - 'a'] = node;
-                }
-                currNode = node;
+        public TrieNode nextChild(int index) {
+            for (int i = index + 1; i < 26; i++) {
+                if (this.children[i] != null)
+                    return this.children[i];
             }
-        }
-        public String nextWord(String prefix, String word) {
             return null;
+        }
+        public TrieNode firstChild() {
+            return nextChild(-1);
         }
     }
 
-    private static TrieNode createTrie(List<String> words) {
-        TrieNode root = new TrieNode();
+    public static void addWord(String word, TrieNode root) {
+        TrieNode node = root;
+        for (int i = 0; i < word.length(); i++) {
+            char ch = word.charAt(i);
+            TrieNode child = node.children[ch - 'a'];
+            if (child == null) {
+                child = new TrieNode(node.prefix + ch);
+                node.children[ch - 'a'] = child;
+            }
+            node = child;
+        }
+    }
+
+    public static TrieNode makeTrie(List<String> words) {
+        TrieNode root = new TrieNode("");
+        for (String word: words) {
+            addWord(word, root);
+        }
         return root;
     }
-    private static String getPrefix(List<String> square) {
-        int m = square.size();
-        if (m == 0)
+
+    private static String firstWord(String prefix, TrieNode root) {
+        List<TrieNode> path = new ArrayList<>();
+        path.add(root);
+        for (int i = 0; i < prefix.length(); i++) {
+            char ch = prefix.charAt(i);
+            TrieNode child = path.get(path.size() - 1).children[ch - 'a'];
+            if (child == null)
+                return null;
+            path.add(child);
+        }
+
+        while (true) {
+            TrieNode last = path.get(path.size() - 1);
+            TrieNode child = last.firstChild();
+            if (child == null)
+                break;
+            path.add(child);
+        }
+        return path.get(path.size() - 1).prefix;
+    }
+
+    private static String nextWord(String prefix, String word, TrieNode root) {
+        assert(word.startsWith(prefix));
+
+        List<TrieNode> path = new ArrayList<>();
+        path.add(root);
+        for (int i = 0; i < word.length(); i++) {
+            char ch = word.charAt(i);
+            path.add(path.get(path.size() - 1).children[ch - 'a']);
+        }
+
+        while (path.size() > prefix.length() + 1) {
+            TrieNode last = path.get(path.size() - 1);
+            TrieNode p = path.get(path.size() - 2);
+            int index = last.prefix.charAt(last.prefix.length() - 1) - 'a';
+            TrieNode next = p.nextChild(index);
+            if (next == null) {
+                path.remove(path.size() - 1);
+            }
+            else {
+                path.set(path.size() - 1, next);
+                break;
+            }
+        }
+
+        if (path.size() == prefix.length() + 1)
+            return null;
+
+        while (path.size() < word.length() + 1) {
+            path.add(path.get(path.size() - 1).firstChild());
+        }
+
+        return path.get(path.size() - 1).prefix;
+    }
+
+    private static String getnextWordPrefix(List<String> square) {
+        if (square.isEmpty())
             return "";
+
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < m; i++)
+        int m = square.size();
+        for (int i = 0; i < square.size(); i++)
             sb.append(square.get(i).charAt(m));
         return sb.toString();
     }
-    private static boolean backtrack() {}
-    
-    public static List<List<String>> wordsSqares(List<String> words) {
-        TrieNode root = createTrie(words);
+    public static List<List<String>> wordsSquares(List<String> words) {
+        TrieNode root = makeTrie(words);
 
         List<List<String>> squares = new ArrayList<>();
-        int k = words.get(0).length();
         List<String> square = new ArrayList<>();
+        int k = words.get(0).length();
         while (true) {
-            String prefix = getPrefix(square);
-            String next = root.nextWord(prefix, square.isEmpty() ? null : square.get(square.size() - 1));
-
-            if (next != null)
+            String next;
+            if (square.isEmpty()) {
+                next = firstWord("", root);
                 square.add(next);
+            }
+            else {
+                String last = square.get(square.size() - 1);
+                String prefix = getnextWordPrefix(square.subList(0, square.size() - 1));
+                next = nextWord(prefix, last, root);
+                if (next == null) {
+                    square.remove(square.size() - 1);
+                    if (square.isEmpty()) {//done
+                        break;
+                    }
+                    continue;
+                }
+                square.set(square.size() - 1, next);
+            }
+
+            while (square.size() < k) {
+                String prefix = getnextWordPrefix(square);
+                next = firstWord(prefix, root);
+                if (next == null)
+                    break;
+                square.add(next);
+            }
 
             if (square.size() == k) {
-                squares.add(square);
+                List<String> answer = new ArrayList<>();
+                answer.addAll(square);
+                squares.add(answer);
             }
 
-            if (next == null || square.size() == k) {
-                if (!backtrack())
-                    break;
+        }
+        return squares;
+    }
+
+    public static void main(String[] args) {
+        for (String[] words: new String[][]{
+                {"area","lead","wall","lady","ball"},
+                {"abat","baba","atan","atal"}
+        }) {
+            System.out.println(Joiner.on(", ").join(words));
+            System.out.println("Answers: ");
+            List<List<String>> wordsList = wordsSquares(Arrays.asList(words));
+            for (List<String> res: wordsList) {
+                System.out.println("    " + Joiner.on(", ").join(res));
             }
         }
-
-        return squares;
     }
 }
