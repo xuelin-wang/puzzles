@@ -50,7 +50,7 @@ public class LongestDistinctKSubstring {
         }
         return max;
     }
-    
+
 
     public static void main(String[] args) {
         for (Object[] sAndK: new Object[][]{
