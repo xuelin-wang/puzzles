@@ -39,7 +39,7 @@ BIT:
      The tricky idea is that in the BIT, when scanning i, BIT stores information about items greater than sortedNum[index] so far.
 
  MergeSort and count:
-   O(nLogn). 
+   O(nLogn).
 
  Naive:
  for each i > 0, find reverse pairs(k, i) such that k<i and a[k] > 2*a[i]

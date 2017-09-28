@@ -26,7 +26,7 @@
         * Slower than predecessor
         * Not compatible with certain PCs.
 
-    * Gateway computer company: alow to react to new markets
+    * Gateway computer company: allow to react to new markets
         * not entering enterprise markets
         * not entering laptop business
         * diversifying into consumer business, but not enough profits.
@@ -39,4 +39,4 @@
         * patents settlement
         * legal challenges
 
-    * 
+    *
