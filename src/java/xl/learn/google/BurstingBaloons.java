@@ -37,6 +37,8 @@ import java.util.Map;
     return f(-1, 0, n-1, n)
     Cost: O(n^4). space: O(n^4)
 
+    Optimization:
+      Only need dp(start, end) with before start-1 and after end+1. Initial implementation(code) is overcomplex.
 
  */
 public class BurstingBaloons {
