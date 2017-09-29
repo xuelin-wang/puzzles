@@ -1,6 +1,17 @@
 # Concepts
 ## Machine learning
-- Neural network, deep learning
+### types of machine learning
+Machine learning is a program can improve measure of performance P doing task T with experience E.
+
+Types of machine learning: unsupervised, supervised. Classification, impution of missing data, anormaly detection, transcription, structured output, regression.
+
+### Estimator, bias, variance
+Estimator is to estimate certain quantities or function. Point estimator, function estimator. The accuracy can be measured by bias and variance, or some other measurements such as mean squared error.
+
+### Linear regression, stochastic gradient descent
+
+### Neural network, deep learning
+
 - feedforward, feedbackwords, recurring, convolutionary
 - linear regression, gradient descent
 - softmax
@@ -8,7 +19,8 @@
 
 ## Statistics
 - markov chain, markov process
-- monto carlo simulation,
+- monto carlo simulation: define a possible inputs domain, then generate samples randomly, perform computations on generated samples.
+  MLE, MAP
 
 ## Algorithm    
 ### Turing Machine
@@ -67,6 +79,7 @@ Nondeterministic algorithm vs. Deterministic algorithm: Nondeterministic algorit
 - Max cut. Cut of vertexes of graph into two sets, such that number of edges between the two sets are maximal.
 
 ### Dijkstra, A* algorithm
+
 ### language types and grammars: context free, regex
 
 ## Formal system
