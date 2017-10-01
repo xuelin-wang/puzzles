@@ -24,6 +24,14 @@ package xl.learn.google;
 
  Solution:
 find x such that s = sum x^i = (x^k - 1) / (x - 1)
+ 1:
+ Can use Java BigInteger. modula and division, check remainder is 1.
+ Cost: O(logn * BegInteger cost for doing length n division/modulo).
+
+ 2:
+ find the exponent k so that x / (y^(k/2))) = x % (y^(k/2)) when k if odd.
+ when k is even,  (x - y^(k/2)) / (y^(k/2+1)) = x % (y^(k/2+1)) ,x
+
  */
 public class SmallestGoodBase {
 }

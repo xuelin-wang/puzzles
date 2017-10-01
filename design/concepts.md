@@ -143,7 +143,23 @@ Then assign codes to the binary tree.
 - onynx, snapshot marker
 
 ## functional language
+### list comprehension
+a way to build list from existing list. In clojure, uses for :when :left.
+
 ### clojure vector implementation
+Digit partitioned vector tries. branching factor is 32. path copy for updates.
+
+### clojure
+- Embrace JVM. interop both ways is extremely easy. use JVM libraries.
+- functional. Immutable data structure. focus on functions reuse and generic/higher order functions.
+- lisp. code is data. Macros.
+- builtin concurrency primitives.
+
+Multimethods, proxy.
+
+spec
+check with the whole runtime information/data, so more powerful than static analysis (type).
+
 ### transducer
 ### monad, flatmap,
 Monad in category: a monad is a eudofunctor T with two naturals: &eta;: 1c->T and &mu;: T(T)->T
