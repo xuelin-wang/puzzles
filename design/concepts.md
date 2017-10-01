@@ -9,7 +9,7 @@ Types of machine learning: unsupervised, supervised. Classification, impution of
 Estimator is to estimate certain quantities or function. Point estimator, function estimator. The accuracy can be measured by bias and variance, or some other measurements such as mean squared error.
 
 ### Linear regression, stochastic gradient descent
-
+Stochastic gradient descent use small number of random samples to calculate gradient direction.
 ### Neural network, deep learning
 
 - feedforward, feedbackwords, recurring, convolutionary
@@ -22,7 +22,7 @@ Estimator is to estimate certain quantities or function. Point estimator, functi
 - monto carlo simulation: define a possible inputs domain, then generate samples randomly, perform computations on generated samples.
   MLE, MAP
 
-## Algorithm    
+## Algorithms    
 ### Turing Machine
 An infinite cells of tape, initial position, state, a finite instruction table. Each step, read/write active cell, move left or right, may change to a new state, util arrive at one of an acceptable states.
 
@@ -78,13 +78,52 @@ Nondeterministic algorithm vs. Deterministic algorithm: Nondeterministic algorit
 - Partition problem. Give a multiset S, whether we can partition S into S1 and S2 such that sum of items in S1 equals sum of items in S2.
 - Max cut. Cut of vertexes of graph into two sets, such that number of edges between the two sets are maximal.
 
-### Dijkstra, A* algorithm
+### topological sort, strongly connected components
+DFS, using finish time for topological sort.
+Use dfs on G and G' (G with edges reversed) to get strongly connected subsets.
+
+### Dijkstra, Bellman-Ford, A* algorithm
+Dijkstra doesn't work with negative distances. A* use estimate function h(x) to determine next path to expand.
+Bellman-Ford: adding check for negative circles if d(v) > d(u) + w(u->v) for some edge u->v.
+
+### Greedy methods, Matroid
+A matroid is a pair (S, I), I is collection of subsets of S. If A &#x2286; B and B &#x22F4; I, then A &#x22F4; I.
+Examples: asyclic edges of a graph. linear independent rows of a matrix.
+
+Unit time single processor jobs scheduling. tasks 1 to n, deadlines in array d, penalties in array p. Independent set is a set which exists a schedule makes no job late.
+### Mergable heaps
+Operations: min, extractMin, insert, union,
+
+Binary heap has worst O(logN) for all operations other than union.
+
+Two new operations: decreaseKey and deleteNode
+
+Binomial tree: Bk has 2^k nodes, height k, level i has nodes C(k, i). root has degree k.
+
+Binomial heap: list of binomial trees with each binalmial tree with unique height. Each tree represented using left child, right sibling, each child maintains a parent pointer.
+
+### Huffman
+Create binary tree by:
+1. create heap of all weights.
+2. extract two mins, create a parent node with sum of their weights, insert the sumed weight back into the heap.
+3. repeating 2 until all nodes are processed.
+Then assign codes to the binary tree.
+
+### Union find
+
 
 ### language types and grammars: context free, regex
+| name | production rule restrictions | note |
+| ---- | -----------------------------| ---- |
+| type 0 | None | languages can be recognized by Turing machine |
+| type 1 or context sensitive | &alpha;A&beta; -> &alpha;&gamma;&beta; | Linear bounded Turing machine |
+| type 2 or context free | A -> &gamma; | Pushdown automata |
+| type 3 or regular expression | A -> aB; A ->b | Finite state machine |
 
 ## Formal system
-- first order logic
-- lambda calculus
+- first order logic: logic symbols, variables, quantifiers ( &#x2200; &#x2203; )
+- second order logic: predicates and functions
+- lambda calculus: variables, abstraction and application.
 
 ## System architecture
 - stream processing: watermark, windowing,...
