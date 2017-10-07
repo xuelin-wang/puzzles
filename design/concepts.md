@@ -160,6 +160,19 @@ Multimethods, proxy.
 spec
 check with the whole runtime information/data, so more powerful than static analysis (type).
 
+### clojure concurrency
+Concurrency support: ref, var, atom, agent
+
+identity, values
+
+atom: single value atomic swap, no side effects. No waiting. reset! or swap!. Can add validators and watchers. manages one identity.
+
+ref: transaction, commute, alter. multiple objects, no side effects. Transactions in dosync.
+
+var: can be dynamic, then binding can rebind the vars for a function execution, then restore vars after done. Stack like binding/unbinding. static vars can also be rebound (with-redef).
+
+agent: guarantee order, exactly once, can have side effects.
+
 ### transducer
 ### monad, flatmap,
 Monad in category: a monad is a eudofunctor T with two naturals: &eta;: 1c->T and &mu;: T(T)->T

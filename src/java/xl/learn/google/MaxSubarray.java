@@ -3,7 +3,8 @@ package xl.learn.google;
 /**
  * Created by xuelin on 9/26/17.
  *
- * Given an array consisting of n integers, find the contiguous subarray whose length is greater than or equal to k that has the maximum average value. And you need to output the maximum average value.
+ * Given an array consisting of n integers, find the contiguous subarray whose length is greater than or equal to k
+ * that has the maximum average value. And you need to output the maximum average value.
 
  Example 1:
  Input: [1,12,-5,-6,50,3], k = 4
