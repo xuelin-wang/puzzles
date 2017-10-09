@@ -36,11 +36,17 @@ import java.util.stream.Collectors;
 
  Solution:
  can we use similar trick as in range 1D?
- 1. Sparse table
+ 1.1 Sparse table
  Calc all i, j to i + 2^k, j + 2^m for all k and m.
  s[i][j][k][m] = s[i][j][k][m-1] + s[i][j+2^(m-1)][k][m-1]
  s[i][j][k][m] = s[i][j][k-1][m] + s[i+2^(k-1)][j][k-1][m]
  Space: O(mn logm logn), same precompute time, query time: O(logm logn).
+
+ 1.2 Optimize 1.1:
+ Improve space / precompute time to O(mn).
+ sum(i,j) stores sum of elements
+ sum(i0,j0, i1, j1)
+ for i in 0,m, j in 0,n,
 
  2. squre root blocks:
  if we precompute m^0.5 and n^0.5 blocks, totally O(mn) time.
