@@ -26,7 +26,7 @@ import java.util.*;
  head and tail of this list remember min and max.
 
 
- Map<Key, Cell> kvs: Cell is linked structure with left, right, up, down links.
+ Map<Key, Cell> keyData: Cell is linked structure with left, right, up, down links.
  Map<Integer, Cell> headers: map value to header for the value
  mainHeader
      |
@@ -38,8 +38,8 @@ import java.util.*;
      |
  mainHeader
 
- Inc(Key): from kvs, get its Cell. if exists, remove original cell from row. if list for the row is empty now, remove the header.
-     for new Cell with increased value, add it to the kvs map. if no row for new cell, insert new header row. add cell to the row.
+ Inc(Key): from keyData, get its Cell. if exists, remove original cell from row. if list for the row is empty now, remove the header.
+     for new Cell with increased value, add it to the keyData map. if no row for new cell, insert new header row. add cell to the row.
  Dec(Key): opposite operation from above.
  GetMaxKey() - mainHeader.up.right.key
  GetMinKey() - mainHeader.down.right.key
