@@ -15,8 +15,14 @@ Semantic security: given m0, m1, |m0| = |m1|, for cipher c, attacker cannot diff
 A PRF is a family of functions F: X -> Y that can be deterministically and effectively calculated, such that there is no effective algorithm A to differentiate a PRF chosen randomly from the collection from a random oracle: X -> Y.
 
 #### Block cipher
-CBC: chain mode, not parallizable.
+CBC: chain mode, not parallizable. c1=F(k, m0 xor IV),
+c2 = F(k, m1 xor c1), ... IV must be unique and mapped from an independent PRP from F, otherwise a chosen plaintext and chosen counter number will break it. Note PRP mapped IV must be transfered in cipher text for decryption.
 
 CTR: counter mode, parallizable.
 
 semantic security: chosen plaintext attack. After certain number of queries, cannot differentiate c is for m0 or m1.
+
+#### PMAC
+PMAC: split message into blocks, each block is xored with P(k, i), this is to prevent switch block attack. then F(k, block i), xor them together and F(k, results) = tag.
+
+One time MAC can use faster method.
