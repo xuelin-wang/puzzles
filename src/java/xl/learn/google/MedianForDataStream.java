@@ -1,7 +1,5 @@
 package xl.learn.google;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 /**
  * Created by xuelin on 9/26/17.
  * Median is the middle value in an ordered integer list. If the size of the list is even, there is no middle value. So the median is the mean of the two middle value.
@@ -48,6 +46,6 @@ public class MedianForDataStream {
 
     }
     public double findMedian() {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 }
