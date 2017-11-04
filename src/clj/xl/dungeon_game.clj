@@ -38,3 +38,54 @@ Cost: total possible steps is m + n. number of nodes is mn, so total cost is O(m
 "
 
 (ns xl.dungeon-game)
+(defn- dp [grid]
+  (let [m (count grid)
+        n (count (first grid))
+        cell (fn [row col] (nth (nth grid row) col))
+        ]
+    (reduce
+      (fn [state [row col]]
+        (let [neg-cell (- (cell row col))
+              val
+              (cond
+                (= col (dec n))
+                  (if (= row (dec m))
+                    (inc neg-cell)
+                    (+ neg-cell (state [(inc row) col]))
+                    )
+                (= row (dec m))
+                  (+ neg-cell (state [row (inc col)]))
+                :else
+                  (+ neg-cell (min (state [(inc row) col]) (state [row (inc col)])))
+                )
+              ]
+              (assoc state [row col] (max 1 val))
+          )
+        )
+      {}
+      (for [row (reverse (range m))
+            col (reverse (range n))]
+        [row col])
+      )
+    )
+  )
+
+(defn min-health [grid]
+  ((dp grid) [0 0])
+  )
+
+(defn- samples []
+  (let [grid
+        [
+         [-2 -3 3]
+         [-5 -10 1]
+         [10 30 -5]
+         ]
+        result (min-health grid)
+        ]
+    (println (str "result is: " result))
+    )
+  )
+
+(samples)
+
