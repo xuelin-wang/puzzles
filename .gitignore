@@ -3,6 +3,7 @@
 /classes
 /checkouts
 pom.xml
+puzzle.iml
 figwheel_server.log
 *.jar
 *.class
