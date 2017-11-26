@@ -66,7 +66,7 @@ using gradient descent.
 ```
 hi = wxi + b
 si = 1/(1+e^(-hi))
-Ji = -(hi log si + (1-hi) log (1-si))
+Ji = -(y log si + (1-y) log (1-si))
 
 ds = -(hi / si + (1-hi) / (1-si))
 ds/dh = e^(-hi) / (1+e^(-hi))^2 = si - si^2 = si(1-si)
@@ -77,10 +77,25 @@ db = dh
 on m examples:
 dw, db, J will take average over m samples.
 loop through all samples
+initialize: dw = db = J = 0
+for i from 1 to m:
+  dw += dwi
+  db += dbi
+  j += Ji
 
-
+dw /= m, db /= m, J /= m
+adjust w += a * dw, b += a * db, repeat
 ```
-
+* Python/numpy: vectorization, broadcast. Tips: Avoid using rank 1 array. Assert shapes. reshape.
+* Intuition about the cost function:
+```
+when y = 1, y^ = p(y|x)
+when y = 0, 1-y^ = p(y|x)
+to cover both cases: p(y/x) = y^**y * (1-y^)**(1-y)
+log it:
+log p(y/x) = y log y^ + (1-y) log (1-y^) = - L(y^, y)
+want to maximize (y/x), minimie cost function.
+```
 
 
 
