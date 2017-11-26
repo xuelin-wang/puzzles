@@ -45,6 +45,42 @@ Amount data vs. performance: bigger data and deeper neural network.
 * progresses in: data, computation, algorithm (switch from sigmoid to RaLU function).
 * effeciency of cycle of idea -> code -> experiment.
 
+#### Logistic regression, forward/backward propogation, other implementation techniques
+
+Logistic regression: Binary classification.
+
+Feature matrix:
+* For a*b images right rgb, feature vector size is a*b*3.
+* Traing set size m and test set size t. Compact training set into a single matrix r * m.
+Label set is 1 * m.
+* To apply linear regression on binary classification probome, y = wx + b, to make y,
+P(y=1|x), between 0 and 1, apply sigmoid function: f(x) = 1/(1 + e^-x). g(x) = f(x) - 1/2 =
+(1-e^-x)/(2(1+e^-x)), symmetrical to y axis.
+* Logistic loss function over a single sample. L = 1/2(y-y^)^2, although this is not a good loss
+function, instead, use L = -(y logy^ + (1-y)log(1-y^)). Cost function J = sum m (L(yi, y^i).
+* Gradient descent, above cost function J is a convex function of w,b, so can find global minimum
+using gradient descent.
+* Computation graph of f(x), walk reverse direction to calculate derivatives.
+* Computation graph for binary classification:
+
+```
+hi = wxi + b
+si = 1/(1+e^(-hi))
+Ji = -(hi log si + (1-hi) log (1-si))
+
+ds = -(hi / si + (1-hi) / (1-si))
+ds/dh = e^(-hi) / (1+e^(-hi))^2 = si - si^2 = si(1-si)
+dh = - hi (1-si) - (1-hi)si
+dw = xi dh
+db = dh
+
+on m examples:
+dw, db, J will take average over m samples.
+loop through all samples
+
+
+```
+
 
 
 
