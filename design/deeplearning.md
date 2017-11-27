@@ -141,3 +141,22 @@ is: Wi x + bi for each label i.
     away from other labels' scores. Li = for j!= i sum(max(sj - si + delta, 0)), all distances begger
     than delta, count loss as zero. max(0, _) is sometimes called hinge loss. Squared hinge loss is
     max(0, _)^2.
+
+#### numpy functions
+'''
+import numpy as np
+np.arange
+shape, reshape
+exp, sin
+linspace
+np.linalg.norm: sqrt(sum of squres), devide each row by norm of the axis
+
+'''
+
+#### AI heroes
+* Pieter Abbeel
+    * deep reinforcement learning: data representation, credit assignment, exploration, short/long
+    time horizon. Learn from scratch vs. reused knowledge.
+* Kaggle competition
+* Berkerley's deep learning course is online
+* Andrewj Karparthy's AI online course
