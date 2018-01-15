@@ -97,8 +97,41 @@ log p(y/x) = y log y^ + (1-y) log (1-y^) = - L(y^, y)
 want to maximize (y/x), minimie cost function.
 ```
 
+#### Activatoin function
+<pre>
+sigmoid function g(x) = 1/(1+e^(-x)) = e^x / (1 + e^x)
+(g(x))' = -1/(1 + e^(-x))^2 * (-e^(-x)) = 1/(1 + e^(-x)) * (1/(1 + e^(-x)) -1)
 
+tanh function: t(x) = 2(g(2x)) - 1 = (e^x - e^(-x)) / (e^x + e^(-x))
+advantage: mean zero
 
+Relu function: r(x) = max(0, z)
+advantage: learn faster
+
+Leaky Relu: l(x) = max(0.01 * z, z)
+advantage: this usually works better than above
+
+Why do we need a non-linear activation function?
+otherwise, the whole network is just one linear function.
+</pre>
+
+#### Intuition of deep NN
+* Emulate how brain works
+
+Brain detect simple features first, then more complex features. For face recognition,
+first edge of picture, then individual components (eyes, noses, etc), then faces.
+
+* Circuitry
+
+FOr example, xor Xi. One layer needs 2^n nodes. But if we do two variables per computation,
+We can complete it by only log n layer, with total 2n nodes in all layers.
+
+#### parameters and hyper parameters
+
+Parameters: Wi, bi
+
+Hyper parameters: number of hidden layers, nodes in each layer, learning rate, iterations,
+activation functions, etc.
 
 #### <a name="cs231n"></a> CS231 notes
 ##### Problem

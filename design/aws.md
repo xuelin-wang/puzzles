@@ -16,6 +16,34 @@ Accessing IAM
 * AWS SDK
 * IAM HTTPS API
 
+#### AWS API
+* IAM
+<pre>
+To grant external account access:
+external account id, policies/role.
+</pre>
+```
+user, role, group, policy
+instance profile for role,
+id, arn, path, name
+API:
+{create, delete, update}{user, role, policy, group}
+list{users, groups, roles}
+list[attached]{user, group, role}policies
+
+```
+
+* EC2
+```
+start, stop, reboot instances
+{create, modify, delete}:
+        network-acl, network-interface, network-interface-permission, route, route-table
+        security-group, subnet, vpc, vpc-endpoint, vpc-perring-connection, vpn-connection
+
+associate vpc cidr-block
+
+```
+
 #### AWS services
 * EC2
 Complete control of instances, os can be multiple linux and windows servers. 
@@ -51,7 +79,7 @@ instance status.
  |Database|Dynamo       |Nosql database|
  |Database|DAX:Danymo accelerator|Cache for Dynamo|
  |Database|Elastic cache|support Redis or memcached. Cache layer for app.|
- |Database|Redshit      |Data warehouse solution. Can run sql query against S3 unstructured data.|
+ |Database|Redshift      |Data warehouse solution. Can run sql query against S3 unstructured data.|
  |Network |Couldfront   |content delivery network|
  |Management|Cloudwatch |Monitor resoures, logs. collect, track, alert metrics|
  |Management|Cloudtrail |Governance, compliance, operational, risk auditing. |

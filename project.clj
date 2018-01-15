@@ -26,6 +26,7 @@
              :source-paths ["env/prod/clj"]
              :resource-paths ["env/prod/resources"]}
 
+
    :dev           [:project/dev :profiles/dev]
    :test          [:project/dev :project/test :profiles/test]
 
