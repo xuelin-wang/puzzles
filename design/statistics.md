@@ -138,5 +138,38 @@ Arrival-type processes: inter-arrival times are random variables.
 Markov processes: next value depends on past values. For Markov, the depdency
 is only through current value.
 
+##### Bernoulli
+A single boolean event is called Bernoulli trial
+
+A sequence of trails is called Bernoulli process
+
+Binomial distribution
+* params n, p
+* mass function: P(k, n, p) = C(n,k) * p^k * q*(n-k)
+* mean np, variance npq
+
+##### Poisson process
+Poisson distribution
+
+Modeling number of events in a period.
+* events occurance is independent
+* fixed rate
+* two events don't occur at same time
+* probability of an event is proportional to length of period
+* the distribution is given by binomail distribution with n >> np
+
+Assuming average number of events in unit time is &lambda;
+
+p(k events in interval) = e^(-&lambda;) * &lambda; ^ k / k!
+
+##### limit theorem
+
+Xi 1..n i.i.d. variables with mean &mu; and variance &sigma;, Y=&Sgima;Xi/n
+
+Sample E(Y) = E(&Sigma;Xi/n) = &mu;,
+
+V(&Sigma;Xi/n) =  E((&Sigma;Xi/n - &mu;)^2) = E(Y^2) + &mu;^2 - 2&mu;E(Y) = E(Y^2) - &mu;^2
+
+
 
 
