@@ -1,30 +1,40 @@
 package main
 
 import (
-	"fmt"
-	"io"
-	"net/http"
-	"os"
-	"strings"
+    "fmt"
+    "io/ioutil"
+    "net/http"
+    "os"
+    "time"
+    "strings"
 )
 
-func main() {
-	for _, url := range os.Args[1:] {
-		if !strings.HasPrefix(url, "http") {
-			url = "http://" + strings.TrimLeft(url, "/")
-		}
-		resp, err := http.Get(url)
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "fetch: %v", err)
-			os.Exit(1)
-		}
-		fmt.Fprintf(os.Stderr, " status: %d",   resp.StatusCode)
+func normalize(url string) string {
+    if strings.HasPrefix(url, "http:") {
+	return url
+    }
+    return "http://" + url
+}
 
-		_, err = io.Copy(os.Stdout, resp.Body)
-		resp.Body.Close()
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "read: %v", err)
-			os.Exit(1)
-		}
-	}
+func fetch(url string, ch chan string) {
+	start := time.Now()
+            resp, err := http.Get(normalize(url))
+	    if err != nil {
+		ch <- fmt.Sprintf("Error fetch url. url=%s, error=%v, durationMs=%d", url, err, time.Since(start)/time.Millisecond)
+	        return
+	    }
+	    defer resp.Body.Close()
+	    body, err := ioutil.ReadAll(resp.Body)
+	    ch <- fmt.Sprintf("Fetched url. url=%s, bodyLen=%d, durationMs=%d", url, len(body), time.Since(start)/time.Millisecond)
+}
+
+func main() {
+    ch := make(chan string)
+    for _, url := range os.Args[1:] {
+	go fetch(url, ch)
+    }
+
+    for range os.Args[1:] {
+        fmt.Printf("%s\n", <- ch)
+    }
 }
