@@ -3,11 +3,12 @@
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[org.clojure/clojure "1.9.0-alpha17"]
-                 [org.clojure/spec.alpha "0.1.123"]
-                 [org.clojure/test.check "0.9.0"]
+  :dependencies [[org.clojure/clojure "1.9.0"]
+                 [org.clojure/spec.alpha "0.2.168"]
+                 [org.clojure/test.check "0.10.0-alpha3"]
                  [org.clojure/math.combinatorics "0.1.4"]
-                 [org.clojure/core.async "0.3.443"]
+                 [org.clojure/core.async "0.4.474"]
+                 [com.datomic/client-cloud "0.8.56"]
                  [org.clojure/algo.monads "0.1.6"]]
 
   :java-source-paths ["src/java"]
@@ -30,13 +31,14 @@
    :dev           [:project/dev :profiles/dev]
    :test          [:project/dev :project/test :profiles/test]
 
-   :project/dev  {:dependencies [[prone "1.1.4"]
-                                 [pjstadig/humane-test-output "0.8.1"]
-                                 [binaryage/devtools "0.8.3"]
-                                 [com.cemerick/piggieback "0.2.2-SNAPSHOT"]
-                                 [doo "0.1.7"]]
-                  :plugins      [[com.jakemccrary/lein-test-refresh "0.18.1"]
-                                 [lein-doo "0.1.7"]]
+   :project/dev  {:dependencies [[prone "1.6.0"]
+                                 [pjstadig/humane-test-output "0.8.3"]
+                                 [binaryage/devtools "0.9.10"]
+                                 [com.cemerick/piggieback "0.2.2"]
+                                 [com.google.guava/guava "26.0-jre"]
+                                 [doo "0.1.10"]]
+                  :plugins      [[com.jakemccrary/lein-test-refresh "0.23.0"]
+                                 [lein-doo "0.1.10"]]
 
                   :doo {:build "test"}
                   :source-paths ["env/dev/clj" "test/clj"]
