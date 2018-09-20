@@ -9,6 +9,7 @@
                  [org.clojure/math.combinatorics "0.1.4"]
                  [org.clojure/core.async "0.4.474"]
                  [org.clojure/math.combinatorics "0.1.4"]
+                 [org.clojure/math.numeric-tower "0.0.4"]
                  [com.datomic/client-cloud "0.8.56"]
                  [org.clojure/algo.monads "0.1.6"]]
 

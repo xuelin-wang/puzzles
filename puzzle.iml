@@ -76,6 +76,7 @@
     <orderEntry type="library" name="Leiningen: org.clojure/google-closure-library-third-party:0.0-20140718-946a7d39" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/google-closure-library:0.0-20140718-946a7d39" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/math.combinatorics:0.1.4" level="project" />
+    <orderEntry type="library" name="Leiningen: org.clojure/math.numeric-tower:0.0.4" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/spec.alpha:0.2.168" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/test.check:0.10.0-alpha3" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/tools.analyzer.jvm:0.7.0" level="project" />
