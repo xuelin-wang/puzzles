@@ -1,5 +1,8 @@
 Only defines attributes, not entity.
 Each datom is five tuple: entity id, attribute, value, transaction id, op (added or retracted).
+. Universal schema. An entity can have any attributes.
+. Indexes: EAVT (relational view), AEVT (column store), VAET(graph like). No knob to configure or use
+in queries. Indexses are covered (datom inside index)
 
 Architecture:
 * Solo
