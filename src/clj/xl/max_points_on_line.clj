@@ -3,6 +3,8 @@
   )
 "
 Given n points on a 2D plane, find the maximum number of points that lie on the same straight line.
+Solution:
+
 "
 (defn- on-line [point line]
   (let [[[x1 y1] [x2 y2]] line
