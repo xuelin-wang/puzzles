@@ -60,18 +60,23 @@ Potential optimization:
         to-rc (fn [k]
                 (let [k1 (dec k)
                       r (int (/ k1 n))
+                      r (- n 1 r)
                       c1 (int (mod k1 n))
-                      c (if (even? r) c1 (- n 1 c1))]
+                      c (if (even? (- n 1 r)) c1 (- n 1 c1))
+                      ;                      _ (println "to-rc [k, r, c]: " [k, r, c])
+                      ]
                   [r c]))
         dest (fn [k]
                (let [[r c] (to-rc k)
-                     _ (println "n: " n ", k: " k ", r: " r ", c: " c)
-                     v (nth (nth table r) c)]
+                     v (nth (nth table r) c)
+                     ;                     _ (println "k: " k ", r: " r ", c: " c ", v: " v)
+                     ]
                  (if (= v -1) k v)
                  )
                )
         ]
     (loop [steps 0 visited #{1} si #{1}]
+      (println "step: " steps ", visited: " visited)
       (let [si1* (set (mapcat (fn [i] (map dest (filter #(<= % n2) (range (inc i) (+ i 7))))) si))
             si1 (set/difference si1* visited)
             new-steps (inc steps)
@@ -92,7 +97,10 @@ Potential optimization:
                 [-1,15,-1,-1,-1,-1]]
         ]
     (println "steps is " (steps table) " for")
-    (println "table: " table)
+    (println "table: ")
+    (doseq [r (range (count table))]
+            (println (nth table r))
+            )
     )
 )
 
