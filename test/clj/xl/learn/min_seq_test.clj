@@ -8,7 +8,6 @@
     [clojure.test.check.clojure-test :refer [defspec]]
     ))
 
-
 (def good-min
   (prop/for-all [v (gen/not-empty (gen/vector gen/int))]
                 (let [m (xl.min-seq/min-seq v)
